@@ -75,6 +75,8 @@
         <div id="help">
             <p>Help report</p>
         </div>
+        <button class="btn" style="margin-bottom: 1%; background-color:rgb(12,12,151); color:white;" onclick="newGame()">New
+            game</button>
     </div>
 
     <div class="container">
@@ -137,7 +139,32 @@
         var lastLocation = 0;
         var fancyCoinLocations = [2, 5, 14, 19, 23, 33];
         var monsterLocation = 20;
+
         var gameOver = false;
+
+        function newGame() {
+        score = 0;
+        const scoreEl = document.getElementById("score");
+        scoreEl.textContent = `Score is ${score}`;
+
+        locations = 0;
+        const locationsEl = document.getElementById("locations");
+        locationsEl.textContent = `Number of locations checked is ${locations}`;
+
+        lastLocation = 0;
+        monsterLocation = Math.floor(Math.random() * 35);
+        fancyCoinLocation = Array.from({ length: 6 }, () =>
+            Math.floor(Math.random() * 35)
+        ).filter((value, index, self) => self.indexOf(value) === index);
+
+        gameOver = false;
+
+        for (let i = 0; i < ids.length; i++) {
+            const img = document
+                .getElementById(ids[i])
+                .setAttribute("src", "building.jpg");
+        }
+    }
         function check(position) {
             if (gameOver == true) {
                 return;

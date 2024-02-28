@@ -52,6 +52,7 @@
     <button onclick="makeNewDiv()" style="background-color:azure; color:black">Add end</button>
     <button onclick="addFront()" style="background-color:azure; color:black">Add front</button>
     <button onclick="remove()" style="background-color:azure; color:black">Remove</button>
+    <button onclick="swapItems()" style="background-color:azure; color:black">Swap</button>
 
     <script>
         function makeNewDiv() {
@@ -85,6 +86,24 @@
 
             if (divListItems.length > 0) {
                 divListItems[Math.floor(divListItems.length / 2)].remove();
+            }
+        }
+
+        function swapItems() {
+            const divListItems = document.getElementsByClassName("divlist");
+            const length = divListItems.length;
+            if (length >= 2) {
+                const index1 = Math.floor(Math.random() * length);
+                let index2 = Math.floor(Math.random() * length);
+                while (index2 === index1) {
+                    index2 = Math.floor(Math.random() * length);
+                }
+                const item1 = divListItems[index1];
+                const item2 = divListItems[index2];
+                // Swaps the positions
+                const temp = item1.nextSibling;
+                item2.parentNode.insertBefore(item1, item2.nextSibling);
+                item1.parentNode.insertBefore(item2, temp);
             }
         }
     </script>
